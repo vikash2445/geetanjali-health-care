@@ -56,7 +56,7 @@ export default function ServicesPage() {
       title: 'Medical Equipment',
       description: 'High quality medical equipment and accessories.',
       icon: <Stethoscope className="w-8 h-8 text-teal-700" />,
-      href: '/services/medical-equipment',
+      href: '/products',  // ✅ Changed to /products
       image: '/images/services/medical-equipment.jpg',
       bg: 'bg-teal-50'
     }
@@ -204,7 +204,7 @@ export default function ServicesPage() {
         .service-image img {
           width: 100%;
           height: 100%;
-          object-fit: contain;  /* ← object-contain se image cut nahi hogi */
+          object-fit: contain;
           transition: transform 0.3s ease;
         }
         .service-card:hover .service-image img {
@@ -549,7 +549,7 @@ export default function ServicesPage() {
                 <li><Link href="/services/sleep-care">Sleep Care</Link></li>
                 <li><Link href="/services/patient-monitoring">Patient Monitoring</Link></li>
                 <li><Link href="/services/homecare">Homecare Services</Link></li>
-                <li><Link href="/services/medical-equipment">Medical Equipment</Link></li>
+                <li><Link href="/products">Medical Equipment</Link></li>  {/* ✅ Redirects to Products */}
               </ul>
             </div>
           </div>

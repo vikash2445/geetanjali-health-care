@@ -386,6 +386,49 @@ export default function ProductsPage() {
       rating: 4.3,
       reviews: 42,
       inStock: true
+    },
+
+    // filters 
+    {
+      id: 26,
+      name: 'Resmed AirSense 11 AutoSet CPAP Filter',
+      description: 'CPAP filter for Resmed AirSense 11 AutoSet',
+      category: 'filters',
+      subCategory: 'Filter',
+      price: 350,
+      image: '/images/services/resmed_filter1.png',
+      tag: 'Filter',
+      rating: 4.3,
+      reviews: 42,
+      inStock: true
+    },
+
+    {
+      id: 27,
+      name: 'dreamstation cpap filter',
+      description: 'CPAP filter for Philips DreamStation',
+      category: 'filters',
+      subCategory: 'Filter',
+      price: 400,
+      image: '/images/services/dreamstation_filter1.png',
+      tag: 'Filter',
+      rating: 4.3,
+      reviews: 42,
+      inStock: true
+    },
+
+    {
+      id: 28,
+      name: 'philips bi-pap filter',
+      description: 'CPAP filter for Philips BiPAP machines',
+      category: 'filters',
+      subCategory: 'Filter',
+      price: 300,
+      image: '/images/services/philips_filter1.png',
+      tag: 'Filter',
+      rating: 4.3,
+      reviews: 42,
+      inStock: true
     }
   ];
 
