@@ -128,14 +128,24 @@ export default function HomePage() {
         <div className="bg-slate-900 text-slate-300 text-sm">
           <div className="max-w-7xl mx-auto px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-5">
-              <span className="flex items-center gap-1.5">
+              {/* ✅ Active Phone Link */}
+              <a 
+                href="tel:+919553850035" 
+                className="flex items-center gap-1.5 hover:text-emerald-400 transition-colors cursor-pointer"
+              >
                 <Phone className="w-3.5 h-3.5 text-emerald-400" />
-                +91 96538 50035
-              </span>
-              <span className="hidden md:flex items-center gap-1.5">
+                +91 95538 50035
+              </a>
+              
+              {/* ✅ Active Email Link */}
+              <a 
+                href="mailto:info@geetanjalihealthcare.com" 
+                className="hidden md:flex items-center gap-1.5 hover:text-emerald-400 transition-colors cursor-pointer"
+              >
                 <Mail className="w-3.5 h-3.5 text-emerald-400" />
                 info@geetanjalihealthcare.com
-              </span>
+              </a>
+              
               <span className="hidden lg:flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-emerald-400" />
                 Available 24x7
@@ -143,7 +153,7 @@ export default function HomePage() {
             </div>
             <span className="flex items-center gap-1.5 text-emerald-400 font-medium">
               <MapPin className="w-3.5 h-3.5" />
-              Serving jaipur, all Rajasthan &amp; nearby areas
+              Serving Jaipur, all Rajasthan &amp; nearby areas
             </span>
           </div>
         </div>
@@ -213,15 +223,19 @@ export default function HomePage() {
                   priority
                 />
 
-                <div className="absolute -bottom-7 -left-4 sm:-left-8 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3">
+                {/* ✅ Active Emergency Call Card */}
+                <a 
+                  href="tel:+919553850035"
+                  className="absolute -bottom-7 -left-4 sm:-left-8 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 hover:shadow-2xl hover:border-emerald-300 transition-all cursor-pointer"
+                >
                   <div className="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center">
                     <Phone className="w-6 h-6 text-rose-600" />
                   </div>
                   <div>
                     <p className="text-xs text-slate-400 font-medium">Emergency? Call us</p>
-                    <p className="font-bold text-slate-900">+91 96538 50035</p>
+                    <p className="font-bold text-slate-900">+91 95538 50035</p>
                   </div>
-                </div>
+                </a>
 
                 <div className="absolute -top-5 -right-3 sm:-right-6 bg-white px-4 py-3 rounded-2xl shadow-xl border border-slate-100">
                   <div className="flex items-center gap-1">
@@ -409,12 +423,13 @@ export default function HomePage() {
                 >
                   Book Free Consultation <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link
-                  href="tel:+919653850035"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-500/80 text-white rounded-xl font-semibold hover:bg-emerald-500 transition border border-emerald-300/40"
+                {/* ✅ Active Phone Link in CTA */}
+                <a
+                  href="tel:+919553850035"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-500/80 text-white rounded-xl font-semibold hover:bg-emerald-500 transition border border-emerald-300/40 cursor-pointer"
                 >
-                  <Phone className="w-4 h-4" /> +91 96538 50035
-                </Link>
+                  <Phone className="w-4 h-4" /> +91 95538 50035
+                </a>
               </div>
               <p className="flex items-center justify-center gap-2 text-emerald-100/80 text-sm mt-6">
                 <CheckCircle2 className="w-4 h-4" /> No consultation fee &nbsp;•&nbsp;
@@ -485,17 +500,23 @@ export default function HomePage() {
               <div>
                 <h4 className="font-semibold text-white mb-5">Contact Us</h4>
                 <ul className="space-y-4 text-sm">
+                  {/* ✅ Active Phone Link in Footer */}
                   <li className="flex items-start gap-3">
                     <Phone className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <div>
-                      <p className="text-white font-medium">+91 96538 50035</p>
+                    <a href="tel:+919553850035" className="hover:text-emerald-400 transition cursor-pointer">
+                      <p className="text-white font-medium">+91 95538 50035</p>
                       <p className="text-xs mt-0.5">Emergency &amp; booking line</p>
-                    </div>
+                    </a>
                   </li>
+                  
+                  {/* ✅ Active Email Link in Footer */}
                   <li className="flex items-start gap-3">
                     <Mail className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    info@geetanjalihealthcare.com
+                    <a href="mailto:info@geetanjalihealthcare.com" className="hover:text-emerald-400 transition cursor-pointer">
+                      info@geetanjalihealthcare.com
+                    </a>
                   </li>
+                  
                   <li className="flex items-start gap-3">
                     <Clock className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
                     Open 24x7 — All days
