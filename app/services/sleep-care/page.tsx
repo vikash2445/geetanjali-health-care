@@ -763,7 +763,7 @@ export default function SleepCarePage() {
               <Calendar className="w-4 h-4" /> Book Sleep Study
             </Link>
             <Link href="tel:+919876543210" className="btn-outline-white">
-              <Phone className="w-4 h-4" /> +91 98765 43210
+              <Phone className="w-4 h-4" /> +91 9653850035
             </Link>
           </div>
         </section>
