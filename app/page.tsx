@@ -122,128 +122,124 @@ export default function HomePage() {
     <>
       <Navbar cartCount={cartCount} />
 
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-white overflow-x-hidden">
 
         {/* ===== TOP INFO STRIP ===== */}
-        <div className="bg-slate-900 text-slate-300 text-sm">
-          <div className="max-w-7xl mx-auto px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-5">
-              {/* ✅ Active Phone Link */}
+        <div className="bg-slate-900 text-slate-300 text-xs sm:text-sm">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-3 sm:gap-5">
+              {/* ✅ Active Phone Link with Icon */}
               <a 
                 href="tel:+919553850035" 
                 className="flex items-center gap-1.5 hover:text-emerald-400 transition-colors cursor-pointer"
               >
                 <Phone className="w-3.5 h-3.5 text-emerald-400" />
-                +91 95538 50035
+                <span>+91 95538 50035</span>
               </a>
               
               {/* ✅ Active Email Link */}
               <a 
                 href="mailto:info@geetanjalihealthcare.com" 
-                className="hidden md:flex items-center gap-1.5 hover:text-emerald-400 transition-colors cursor-pointer"
+                className="hidden sm:flex items-center gap-1.5 hover:text-emerald-400 transition-colors cursor-pointer"
               >
                 <Mail className="w-3.5 h-3.5 text-emerald-400" />
-                info@geetanjalihealthcare.com
+                <span className="hidden md:inline">info@geetanjalihealthcare.com</span>
+                <span className="md:hidden">Email Us</span>
               </a>
-              
-              <span className="hidden lg:flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-emerald-400" />
-                Available 24x7
-              </span>
             </div>
-            <span className="flex items-center gap-1.5 text-emerald-400 font-medium">
+            <span className="hidden lg:flex items-center gap-1.5 text-emerald-400 font-medium">
               <MapPin className="w-3.5 h-3.5" />
-              Serving Jaipur, all Rajasthan &amp; nearby areas
+              Serving Jaipur &amp; all Rajasthan
             </span>
           </div>
         </div>
 
         {/* ===== HERO SECTION ===== */}
         <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50/60">
-          <div className="absolute top-20 -right-32 w-96 h-96 bg-emerald-100/50 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 -left-32 w-80 h-80 bg-indigo-100/40 rounded-full blur-3xl" />
+          <div className="absolute top-20 -right-32 w-64 sm:w-96 h-64 sm:h-96 bg-emerald-100/50 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 -left-32 w-56 sm:w-80 h-56 sm:h-80 bg-indigo-100/40 rounded-full blur-3xl" />
 
-          <div className="relative max-w-7xl mx-auto px-6 py-12 lg:py-16">
-            <div className="grid lg:grid-cols-2 gap-14 items-center">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
               {/* Left Content */}
-              <div>
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 text-emerald-700 font-semibold text-sm">
-                  <Sparkles className="w-4 h-4" />
+              <div className="text-center lg:text-left">
+                <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-emerald-100/80 text-emerald-700 font-semibold text-xs sm:text-sm">
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   Respiratory &amp; Home Healthcare Specialists
                 </span>
 
-                <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] text-slate-900 tracking-tight">
+                <h1 className="mt-5 sm:mt-6 text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.15] sm:leading-[1.1] text-slate-900 tracking-tight">
                   Quality Healthcare,{' '}
                   <span className="text-emerald-600">Delivered to Your Doorstep</span>
                 </h1>
 
-                <p className="mt-6 text-lg text-slate-600 max-w-xl leading-relaxed">
+                <p className="mt-4 sm:mt-6 text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                   From sleep studies to ICU at home — trusted medical equipment,
                   certified professionals and compassionate care for your family, 24x7.
                 </p>
 
-                <div className="flex flex-wrap gap-4 mt-9">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mt-7 sm:mt-9 justify-center lg:justify-start">
                   <Link
                     href="/assessment"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-600 text-white rounded-xl font-semibold hover:bg-emerald-700 transition shadow-lg shadow-emerald-200"
+                    className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-emerald-600 text-white rounded-xl font-semibold hover:bg-emerald-700 transition shadow-lg shadow-emerald-200 text-sm sm:text-base"
                   >
                     Book Free Consultation <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link
                     href="/products"
-                    className="px-8 py-4 border-2 border-slate-200 text-slate-700 rounded-xl font-semibold hover:border-emerald-500 hover:text-emerald-600 transition"
+                    className="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-slate-200 text-slate-700 rounded-xl font-semibold hover:border-emerald-500 hover:text-emerald-600 transition text-sm sm:text-base"
                   >
                     Browse Equipment
                   </Link>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-9 text-sm text-slate-600">
-                  <span className="flex items-center gap-2">
-                    <ShieldCheck className="w-5 h-5 text-emerald-600" /> ISO Certified Equipment
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-3 mt-6 sm:mt-9 text-xs sm:text-sm text-slate-600">
+                  <span className="flex items-center gap-1.5 sm:gap-2">
+                    <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" /> ISO Certified
                   </span>
-                  <span className="flex items-center gap-2">
-                    <Star className="w-5 h-5 text-amber-400 fill-amber-400" /> 4.9 Patient Rating
+                  <span className="flex items-center gap-1.5 sm:gap-2">
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 fill-amber-400" /> 4.9 Rating
                   </span>
-                  <span className="flex items-center gap-2">
-                    <Ambulance className="w-5 h-5 text-emerald-600" /> Same-Day Delivery
+                  <span className="flex items-center gap-1.5 sm:gap-2">
+                    <Ambulance className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" /> Same-Day Delivery
                   </span>
                 </div>
               </div>
 
               {/* Right Visual */}
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-tr from-emerald-200/60 to-indigo-100/60 rounded-[2.5rem] rotate-2" />
+              <div className="relative mt-8 lg:mt-0">
+                <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-tr from-emerald-200/60 to-indigo-100/60 rounded-[2rem] sm:rounded-[2.5rem] rotate-2" />
                 <Image
                   src="/images/hero-healthcare.jpg"
                   alt="Healthcare professional at home"
                   width={700}
                   height={700}
-                  className="relative rounded-[2rem] shadow-2xl w-full h-auto object-cover"
+                  className="relative rounded-[1.5rem] sm:rounded-[2rem] shadow-2xl w-full h-auto object-cover"
                   priority
                 />
 
                 {/* ✅ Active Emergency Call Card */}
                 <a 
                   href="tel:+919553850035"
-                  className="absolute -bottom-7 -left-4 sm:-left-8 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 hover:shadow-2xl hover:border-emerald-300 transition-all cursor-pointer"
+                  className="absolute -bottom-5 sm:-bottom-7 left-2 sm:-left-8 bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl border border-slate-100 flex items-center gap-2 sm:gap-3 hover:shadow-2xl hover:border-emerald-300 transition-all cursor-pointer"
                 >
-                  <div className="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-rose-600" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-rose-100 rounded-full flex items-center justify-center shrink-0">
+                    <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-rose-600" />
                   </div>
                   <div>
-                    <p className="text-xs text-slate-400 font-medium">Emergency? Call us</p>
-                    <p className="font-bold text-slate-900">+91 95538 50035</p>
+                    <p className="text-[10px] sm:text-xs text-slate-400 font-medium">Emergency? Call</p>
+                    <p className="font-bold text-slate-900 text-sm sm:text-base">+91 95538 50035</p>
                   </div>
                 </a>
 
-                <div className="absolute -top-5 -right-3 sm:-right-6 bg-white px-4 py-3 rounded-2xl shadow-xl border border-slate-100">
-                  <div className="flex items-center gap-1">
+                <div className="absolute -top-3 sm:-top-5 right-2 sm:-right-6 bg-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl sm:rounded-2xl shadow-xl border border-slate-100">
+                  <div className="flex items-center gap-0.5 sm:gap-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                      <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 fill-amber-400" />
                     ))}
                   </div>
-                  <p className="text-xs text-slate-500 mt-1">Trusted by 500+ families</p>
+                  <p className="text-[10px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1">500+ families</p>
                 </div>
               </div>
 
@@ -252,45 +248,45 @@ export default function HomePage() {
         </section>
 
         {/* ===== STATS BAR ===== */}
-        <section className="max-w-7xl mx-auto px-6 -mt-2 mb-12">
-          <div className="bg-slate-900 text-white rounded-3xl shadow-2xl px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 -mt-2 mb-10 sm:mb-12">
+          <div className="bg-slate-900 text-white rounded-2xl sm:rounded-3xl shadow-2xl px-4 sm:px-6 py-6 sm:py-8 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
             {stats.map((stat, i) => (
               <div key={i} className="relative">
-                <h3 className="text-3xl lg:text-4xl font-bold text-emerald-400">{stat.value}</h3>
-                <p className="text-slate-400 mt-1 text-sm">{stat.label}</p>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-emerald-400">{stat.value}</h3>
+                <p className="text-slate-400 mt-1 text-xs sm:text-sm">{stat.label}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* ===== SERVICES SECTION ===== */}
-        <section className="max-w-7xl mx-auto px-6 py-12">
-          <div className="text-center mb-10">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="text-center mb-8 sm:mb-10">
+            <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs sm:text-sm font-semibold">
               What We Do
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mt-4 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-slate-900 mt-3 sm:mt-4 tracking-tight">
               Complete <span className="text-emerald-600">Home Healthcare</span> Services
             </h2>
-            <p className="text-slate-500 mt-4 max-w-2xl mx-auto text-lg">
+            <p className="text-slate-500 mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-lg px-2">
               Everything your family needs — from diagnosis to equipment to ongoing care — all at home.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
             {services.map((service) => (
               <Link
                 key={service.id}
                 href={service.href}
-                className="group relative bg-white p-7 rounded-2xl border border-slate-100 hover:border-emerald-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                className="group relative bg-white p-5 sm:p-7 rounded-2xl border border-slate-100 hover:border-emerald-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-50 transition" />
-                <div className={`relative w-14 h-14 rounded-2xl ${service.accent} flex items-center justify-center group-hover:scale-110 transition`}>
+                <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 bg-slate-50 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-emerald-50 transition" />
+                <div className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${service.accent} flex items-center justify-center group-hover:scale-110 transition`}>
                   {service.icon}
                 </div>
-                <h3 className="relative text-lg font-bold text-slate-900 mt-5">{service.title}</h3>
+                <h3 className="relative text-base sm:text-lg font-bold text-slate-900 mt-4 sm:mt-5">{service.title}</h3>
                 <p className="relative text-slate-500 text-sm mt-2 leading-relaxed">{service.description}</p>
-                <span className="relative inline-flex items-center gap-1.5 text-emerald-600 font-semibold text-sm mt-5 group-hover:gap-3 transition-all">
+                <span className="relative inline-flex items-center gap-1.5 text-emerald-600 font-semibold text-sm mt-4 sm:mt-5 group-hover:gap-3 transition-all">
                   Explore Service <ArrowRight className="w-4 h-4" />
                 </span>
               </Link>
@@ -299,39 +295,39 @@ export default function HomePage() {
         </section>
 
         {/* ===== WHY CHOOSE US ===== */}
-        <section className="bg-slate-50 py-14 mt-4">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-5 gap-8 items-center">
-              <div className="lg:col-span-2">
-                <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold">
+        <section className="bg-slate-50 py-10 sm:py-14 mt-2 sm:mt-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 items-center">
+              <div className="lg:col-span-2 text-center lg:text-left">
+                <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs sm:text-sm font-semibold">
                   Why Geetanjali
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-4 tracking-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mt-3 sm:mt-4 tracking-tight">
                   Care You Can <span className="text-emerald-600">Trust</span>, Support You Can Rely On
                 </h2>
-                <p className="text-slate-500 mt-4 leading-relaxed">
+                <p className="text-slate-500 mt-3 sm:mt-4 leading-relaxed text-sm sm:text-base">
                   We combine medical-grade equipment with compassionate service, so your loved ones
                   receive hospital-quality care in the comfort of home.
                 </p>
-                <div className="mt-8">
+                <div className="mt-6 sm:mt-8">
                   <Link
                     href="/assessment"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 transition"
+                    className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 transition text-sm sm:text-base"
                   >
                     Talk to an Expert <ChevronRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>
 
-              <div className="lg:col-span-3 grid sm:grid-cols-2 gap-5">
+              <div className="lg:col-span-3 grid sm:grid-cols-2 gap-4 sm:gap-5">
                 {whyUs.map((item, i) => (
-                  <div key={i} className="bg-white p-5 rounded-2xl border border-slate-100 hover:shadow-lg transition flex gap-4">
-                    <div className="shrink-0 w-11 h-11 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600">
+                  <div key={i} className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-100 hover:shadow-lg transition flex gap-3 sm:gap-4">
+                    <div className="shrink-0 w-10 h-10 sm:w-11 sm:h-11 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600">
                       {item.icon}
                     </div>
                     <div>
                       <h3 className="font-bold text-slate-900 text-sm">{item.title}</h3>
-                      <p className="text-slate-500 text-sm mt-1 leading-relaxed">{item.desc}</p>
+                      <p className="text-slate-500 text-xs sm:text-sm mt-1 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -341,55 +337,55 @@ export default function HomePage() {
         </section>
 
         {/* ===== HOW IT WORKS ===== */}
-        <section className="max-w-7xl mx-auto px-6 py-14">
-          <div className="text-center mb-10">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+          <div className="text-center mb-8 sm:mb-10">
+            <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs sm:text-sm font-semibold">
               Simple Process
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-4 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mt-3 sm:mt-4 tracking-tight">
               Getting Care at Home is <span className="text-emerald-600">Easy</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {steps.map((item, i) => (
               <div key={i} className="relative text-center">
                 {i < steps.length - 1 && (
                   <div className="hidden md:block absolute top-8 left-[calc(50%+3rem)] w-[calc(100%-6rem)] h-0.5 bg-gradient-to-r from-emerald-300 to-emerald-100" />
                 )}
-                <div className="relative w-16 h-16 mx-auto bg-white border-2 border-emerald-200 rounded-2xl rotate-45 flex items-center justify-center shadow-sm">
-                  <span className="-rotate-45 font-bold text-emerald-600 text-lg">{item.step}</span>
+                <div className="relative w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-white border-2 border-emerald-200 rounded-2xl rotate-45 flex items-center justify-center shadow-sm">
+                  <span className="-rotate-45 font-bold text-emerald-600 text-base sm:text-lg">{item.step}</span>
                 </div>
-                <h3 className="font-bold text-slate-900 mt-6">{item.title}</h3>
-                <p className="text-slate-500 text-sm mt-2 leading-relaxed max-w-xs mx-auto">{item.desc}</p>
+                <h3 className="font-bold text-slate-900 mt-4 sm:mt-6 text-sm sm:text-base">{item.title}</h3>
+                <p className="text-slate-500 text-xs sm:text-sm mt-1 sm:mt-2 leading-relaxed max-w-xs mx-auto">{item.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* ===== TESTIMONIALS ===== */}
-        <section className="bg-slate-900 py-14">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-10">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-semibold">
+        <section className="bg-slate-900 py-10 sm:py-14">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-8 sm:mb-10">
+              <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-semibold">
                 Patient Stories
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mt-4 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-3 sm:mt-4 tracking-tight">
                 Families Who <span className="text-emerald-400">Trust Us</span>
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
               {testimonials.map((t, i) => (
-                <div key={i} className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-7 hover:border-emerald-500/40 transition">
-                  <Quote className="w-8 h-8 text-emerald-500/60" />
-                  <p className="text-slate-300 mt-4 leading-relaxed text-sm">"{t.quote}"</p>
-                  <div className="flex items-center gap-1 mt-5">
+                <div key={i} className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 sm:p-7 hover:border-emerald-500/40 transition">
+                  <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-500/60" />
+                  <p className="text-slate-300 mt-3 sm:mt-4 leading-relaxed text-sm">"{t.quote}"</p>
+                  <div className="flex items-center gap-0.5 sm:gap-1 mt-4 sm:mt-5">
                     {[...Array(t.rating)].map((_, j) => (
-                      <Star key={j} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                      <Star key={j} className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-amber-400" />
                     ))}
                   </div>
-                  <div className="mt-4 pt-4 border-t border-slate-700/60">
+                  <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-slate-700/60">
                     <p className="font-semibold text-white text-sm">{t.name}</p>
                     <p className="text-slate-400 text-xs mt-0.5">{t.role}</p>
                   </div>
@@ -399,57 +395,17 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== CTA BANNER ===== */}
-        <section className="max-w-7xl mx-auto px-6 py-14">
-          <div className="relative overflow-hidden bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl p-10 md:p-14 text-center text-white shadow-2xl">
-            <div className="absolute -top-20 -left-20 w-72 h-72 bg-white/10 rounded-full blur-2xl" />
-            <div className="absolute -bottom-24 -right-16 w-80 h-80 bg-white/10 rounded-full blur-2xl" />
-
-            <div className="relative">
-              <div className="w-16 h-16 mx-auto bg-white/15 rounded-2xl flex items-center justify-center mb-6">
-                <Calendar className="w-8 h-8" />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold">
-                Not Sure Which Equipment You Need?
-              </h2>
-              <p className="text-emerald-100 mt-4 max-w-2xl mx-auto text-lg">
-                Book a free consultation — our healthcare experts will assess your needs and
-                recommend the right solution for you or your loved ones.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 mt-9">
-                <Link
-                  href="/assessment"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-emerald-700 rounded-xl font-semibold hover:bg-emerald-50 transition shadow-lg"
-                >
-                  Book Free Consultation <ArrowRight className="w-4 h-4" />
-                </Link>
-                {/* ✅ Active Phone Link in CTA */}
-                <a
-                  href="tel:+919553850035"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-500/80 text-white rounded-xl font-semibold hover:bg-emerald-500 transition border border-emerald-300/40 cursor-pointer"
-                >
-                  <Phone className="w-4 h-4" /> +91 95538 50035
-                </a>
-              </div>
-              <p className="flex items-center justify-center gap-2 text-emerald-100/80 text-sm mt-6">
-                <CheckCircle2 className="w-4 h-4" /> No consultation fee &nbsp;•&nbsp;
-                <CheckCircle2 className="w-4 h-4" /> Response within 30 minutes
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* ===== FOOTER ===== */}
         <footer className="bg-slate-900 text-slate-400 border-t border-slate-800">
-          <div className="max-w-7xl mx-auto px-6 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
 
-              <div>
+              <div className="sm:col-span-2 lg:col-span-1">
                 <div className="flex items-center gap-2.5">
                   <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center">
                     <HeartPulse className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-white">
+                  <h3 className="text-lg sm:text-xl font-bold text-white">
                     Geetanjali <span className="text-emerald-400">Health Care</span>
                   </h3>
                 </div>
@@ -457,14 +413,14 @@ export default function HomePage() {
                   Quality healthcare services delivered to your home with compassion,
                   professionalism and trust — 24 hours a day, 7 days a week.
                 </p>
-                <div className="flex items-center gap-2 mt-5 text-amber-400 text-sm">
+                <div className="flex items-center gap-2 mt-4 sm:mt-5 text-amber-400 text-sm">
                   <Award className="w-4 h-4" /> Trusted since 2025
                 </div>
               </div>
 
               <div>
-                <h4 className="font-semibold text-white mb-5">Quick Links</h4>
-                <ul className="space-y-3">
+                <h4 className="font-semibold text-white mb-4 sm:mb-5">Quick Links</h4>
+                <ul className="space-y-2.5 sm:space-y-3">
                   {quickLinks.map((link) => (
                     <li key={link.href}>
                       <Link href={link.href} className="text-sm hover:text-emerald-400 transition flex items-center gap-2 group">
@@ -477,8 +433,8 @@ export default function HomePage() {
               </div>
 
               <div>
-                <h4 className="font-semibold text-white mb-5">Our Services</h4>
-                <ul className="space-y-3 text-sm">
+                <h4 className="font-semibold text-white mb-4 sm:mb-5">Our Services</h4>
+                <ul className="space-y-2.5 sm:space-y-3 text-sm">
                   {[
                     { label: 'Sleep Study & Sleep Care', href: '/services/sleep-care' },
                     { label: 'CPAP / BiPAP Therapy', href: '/services/sleep-care' },
@@ -498,9 +454,9 @@ export default function HomePage() {
               </div>
 
               <div>
-                <h4 className="font-semibold text-white mb-5">Contact Us</h4>
-                <ul className="space-y-4 text-sm">
-                  {/* ✅ Active Phone Link in Footer */}
+                <h4 className="font-semibold text-white mb-4 sm:mb-5">Contact Us</h4>
+                <ul className="space-y-3 sm:space-y-4 text-sm">
+                  {/* ✅ Active Phone Link */}
                   <li className="flex items-start gap-3">
                     <Phone className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
                     <a href="tel:+919553850035" className="hover:text-emerald-400 transition cursor-pointer">
@@ -509,10 +465,10 @@ export default function HomePage() {
                     </a>
                   </li>
                   
-                  {/* ✅ Active Email Link in Footer */}
+                  {/* ✅ Active Email Link */}
                   <li className="flex items-start gap-3">
                     <Mail className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <a href="mailto:info@geetanjalihealthcare.com" className="hover:text-emerald-400 transition cursor-pointer">
+                    <a href="mailto:info@geetanjalihealthcare.com" className="hover:text-emerald-400 transition cursor-pointer break-all">
                       info@geetanjalihealthcare.com
                     </a>
                   </li>
@@ -523,15 +479,15 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <Home className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    Jaipur &amp; all Rajasthan &amp; nearby areas
+                    Jaipur &amp; all Rajasthan
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div className="border-t border-slate-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+            <div className="border-t border-slate-800 mt-8 sm:mt-10 pt-5 sm:pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm text-center sm:text-left">
               <span>© {new Date().getFullYear()} Geetanjali Health Care. All Rights Reserved.</span>
-              <div className="flex gap-6">
+              <div className="flex flex-wrap gap-4 sm:gap-6 justify-center">
                 <Link href="/privacy" className="hover:text-emerald-400 transition">Privacy Policy</Link>
                 <Link href="/terms" className="hover:text-emerald-400 transition">Terms &amp; Conditions</Link>
                 <Link href="/refund" className="hover:text-emerald-400 transition">Refund Policy</Link>

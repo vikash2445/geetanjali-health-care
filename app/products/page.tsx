@@ -16,7 +16,7 @@ import {
   User, MapPin, FileText, CreditCard, 
   Moon, Cloud, Zap, Activity, HeartPulse,
   Bed, Brain, Stethoscope, Pill, Thermometer,
-  Headphones, Send, X,
+  Headphones, Send, X, LayoutGrid
 } from 'lucide-react';
 
 // Define product type
@@ -39,7 +39,7 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [priceRange, setPriceRange] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [sortBy, setSortBy] = useState<string>('featured');
+  const [showFilters, setShowFilters] = useState<boolean>(false);
 
   // Product Data with Images
   const products: Product[] = [
@@ -393,7 +393,7 @@ export default function ProductsPage() {
       id: 26,
       name: 'Resmed AirSense 11 AutoSet CPAP Filter',
       description: 'CPAP filter for Resmed AirSense 11 AutoSet',
-      category: 'filters',
+      category: 'Filters',
       subCategory: 'Filter',
       price: 350,
       image: '/images/services/resmed_filter1.png',
@@ -402,12 +402,11 @@ export default function ProductsPage() {
       reviews: 42,
       inStock: true
     },
-
     {
       id: 27,
       name: 'dreamstation cpap filter',
       description: 'CPAP filter for Philips DreamStation',
-      category: 'filters',
+      category: 'Filters',
       subCategory: 'Filter',
       price: 400,
       image: '/images/services/dreamstation_filter1.png',
@@ -416,12 +415,11 @@ export default function ProductsPage() {
       reviews: 42,
       inStock: true
     },
-
     {
       id: 28,
       name: 'philips bi-pap filter',
       description: 'CPAP filter for Philips BiPAP machines',
-      category: 'filters',
+      category: 'Filters',
       subCategory: 'Filter',
       price: 300,
       image: '/images/services/philips_filter1.png',
@@ -432,31 +430,24 @@ export default function ProductsPage() {
     }
   ];
 
-  // Categories for sidebar
+  // Compact categories - only 6 main ones
   const categories = [
-    { name: 'CPAP Machines', icon: <Microscope className="w-4 h-4" />, count: 4 },
-    { name: 'BiPAP Machines', icon: <Wind className="w-4 h-4" />, count: 3 },
-   // { name: 'CPAP / BiPAP Masks', icon: <Mask className="w-4 h-4" />, count: 3 },
-    { name: 'Tubing & Pipe', icon: <Pipette className="w-4 h-4" />, count: 2 },
-    { name: 'Humidifier Chambers', icon: <Droplet className="w-4 h-4" />, count: 2 },
-    { name: 'Filters', icon: <FilterIcon className="w-4 h-4" />, count: 3 },
-    { name: 'Pulse Oximeters', icon: <Heart className="w-4 h-4" />, count: 2 },
-    { name: 'Patient Monitors', icon: <Monitor className="w-4 h-4" />, count: 2 },
-    //{ name: 'Ventilators', icon: <Lungs className="w-4 h-4" />, count: 2 },
-    { name: 'Oxygen Concentrators', icon: <Droplet className="w-4 h-4" />, count: 2 },
-    { name: 'Nebulizers', icon: <SprayCan className="w-4 h-4" />, count: 2 },
-    { name: 'Accessories & Spare Parts', icon: <Wrench className="w-4 h-4" />, count: 5 }
+    { name: 'CPAP Machines', icon: <Microscope className="w-4 h-4" /> },
+    { name: 'BiPAP Machines', icon: <Wind className="w-4 h-4" /> },
+    { name: 'Oxygen Concentrators', icon: <Droplet className="w-4 h-4" /> },
+    { name: 'Patient Monitors', icon: <Monitor className="w-4 h-4" /> },
+    { name: 'Nebulizers', icon: <SprayCan className="w-4 h-4" /> },
+    { name: 'Accessories', icon: <Wrench className="w-4 h-4" /> },
   ];
 
   const priceRanges = [
     { label: 'Under ₹5,000', value: 'under-5000' },
     { label: '₹5,001 – ₹10,000', value: '5001-10000' },
     { label: '₹10,001 – ₹50,000', value: '10001-50000' },
-    { label: '₹50,001 – ₹100,000', value: '50001-100000' },
-    { label: 'Above ₹100,000', value: 'above-100000' }
+    { label: 'Above ₹50,000', value: 'above-50000' }
   ];
 
-  // Filter and sort products
+  // Filter products
   const filteredProducts = products.filter(product => {
     // Category filter
     if (selectedCategory !== 'all' && product.category !== selectedCategory) {
@@ -476,11 +467,8 @@ export default function ProductsPage() {
         case '10001-50000':
           if (price < 10001 || price > 50000) return false;
           break;
-        case '50001-100000':
-          if (price < 50001 || price > 100000) return false;
-          break;
-        case 'above-100000':
-          if (price <= 100000) return false;
+        case 'above-50000':
+          if (price <= 50000) return false;
           break;
         default:
           break;
@@ -498,41 +486,11 @@ export default function ProductsPage() {
     return true;
   });
 
-  // Sort products
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    switch (sortBy) {
-      case 'price-low':
-        return a.price - b.price;
-      case 'price-high':
-        return b.price - a.price;
-      case 'name-asc':
-        return a.name.localeCompare(b.name);
-      case 'name-desc':
-        return b.name.localeCompare(a.name);
-      case 'rating':
-        return (b.rating || 0) - (a.rating || 0);
-      default:
-        return 0;
-    }
-  });
-
   const quickLinks = [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
     { label: 'Services', href: '/services' },
-    { label: 'Products', href: '/products' },
     { label: 'Contact Us', href: '/contact' }
-  ];
-
-  const productLinks = [
-    'CPAP Machines',
-    'BiPAP Machines',
-    'Accessories',
-    'Ventilator (ICU)',
-    'Advanced Ventilator',
-    'Nebulizer',
-    'Nebulizer Machine',
-    'Compressor Nebulizer'
   ];
 
   const formatPrice = (price: number) => {
@@ -563,24 +521,21 @@ export default function ProductsPage() {
         .products-page {
           max-width: 1360px;
           margin: 0 auto;
-          padding: 0 40px 60px;
+          padding: 0 20px 40px;
         }
 
         .breadcrumb {
           display: flex;
           align-items: center;
           gap: 8px;
-          padding: 24px 0 16px;
-          font-size: 0.8rem;
+          padding: 16px 0 12px;
+          font-size: 0.78rem;
           color: #6b7a8a;
         }
         .breadcrumb a {
           color: #0a6b4a;
           text-decoration: none;
           font-weight: 500;
-        }
-        .breadcrumb a:hover {
-          text-decoration: underline;
         }
         .breadcrumb .separator {
           color: #cbd5e1;
@@ -591,11 +546,11 @@ export default function ProductsPage() {
         }
 
         .page-title {
-          margin-bottom: 28px;
+          margin-bottom: 16px;
         }
         .page-title h1 {
           font-family: 'Playfair Display', serif;
-          font-size: 2.4rem;
+          font-size: 1.8rem;
           font-weight: 700;
           color: #0b1a2a;
           letter-spacing: -0.5px;
@@ -604,199 +559,211 @@ export default function ProductsPage() {
           color: #0a6b4a;
         }
         .page-title .sub {
-          font-size: 0.95rem;
+          font-size: 0.85rem;
           color: #4a5b6e;
           margin-top: 4px;
           max-width: 640px;
         }
 
-        .main-grid {
-          display: grid;
-          grid-template-columns: 260px 1fr;
-          gap: 36px;
+        /* ===== COMPACT CATEGORY PILLS ===== */
+        .category-pills {
+          display: flex;
+          gap: 8px;
+          overflow-x: auto;
+          padding-bottom: 8px;
+          margin-bottom: 16px;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .category-pills::-webkit-scrollbar {
+          display: none;
+        }
+        .category-pill {
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 8px 14px;
+          background: #ffffff;
+          border: 1.5px solid #eaf0f5;
+          border-radius: 30px;
+          font-size: 0.78rem;
+          font-weight: 600;
+          color: #4a5b6e;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          white-space: nowrap;
+        }
+        .category-pill:hover {
+          border-color: #0a6b4a;
+          color: #0a6b4a;
+        }
+        .category-pill.active {
+          background: #0a6b4a;
+          border-color: #0a6b4a;
+          color: #ffffff;
+        }
+        .category-pill .count {
+          background: rgba(0,0,0,0.08);
+          padding: 1px 7px;
+          border-radius: 20px;
+          font-size: 0.68rem;
+          font-weight: 700;
+        }
+        .category-pill.active .count {
+          background: rgba(255,255,255,0.25);
         }
 
-        /* Sidebar */
-        .sidebar {
-          background: #f8fafc;
-          border-radius: 20px;
-          padding: 22px 20px;
-          border: 1px solid #eaf0f5;
-          align-self: start;
-          position: sticky;
-          top: 20px;
+        /* ===== SEARCH & FILTER BAR ===== */
+        .search-filter-bar {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 20px;
+          align-items: center;
         }
-        .sidebar h3 {
-          font-size: 0.8rem;
+        .search-input-wrap {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          background: #ffffff;
+          border: 1.5px solid #eaf0f5;
+          border-radius: 12px;
+          padding: 0 14px;
+          height: 44px;
+          transition: border-color 0.2s;
+        }
+        .search-input-wrap:focus-within {
+          border-color: #0a6b4a;
+        }
+        .search-input-wrap input {
+          flex: 1;
+          border: none;
+          outline: none;
+          background: transparent;
+          font-size: 0.85rem;
+          color: #0b1a2a;
+          padding: 0 8px;
+        }
+        .search-input-wrap input::placeholder {
+          color: #94a3b8;
+        }
+        .search-input-wrap .icon {
+          color: #94a3b8;
+        }
+        .filter-btn {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 0 16px;
+          height: 44px;
+          background: #ffffff;
+          border: 1.5px solid #eaf0f5;
+          border-radius: 12px;
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: #4a5b6e;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          white-space: nowrap;
+        }
+        .filter-btn:hover {
+          border-color: #0a6b4a;
+          color: #0a6b4a;
+        }
+        .filter-btn.active {
+          background: #0a6b4a;
+          border-color: #0a6b4a;
+          color: #ffffff;
+        }
+
+        /* ===== FILTER PANEL ===== */
+        .filter-panel {
+          background: #ffffff;
+          border-radius: 16px;
+          border: 1px solid #eaf0f5;
+          padding: 16px;
+          margin-bottom: 20px;
+          animation: slideDown 0.2s ease;
+        }
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .filter-panel h4 {
+          font-size: 0.78rem;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.6px;
-          color: #0a6b4a;
+          letter-spacing: 0.5px;
+          color: #4a5b6e;
           margin-bottom: 12px;
           display: flex;
           align-items: center;
           gap: 8px;
         }
-        .sidebar .category-list {
-          list-style: none;
-          margin-bottom: 28px;
-        }
-        .sidebar .category-list li {
-          padding: 7px 0;
-          font-size: 0.82rem;
-          color: #1e3142;
-          border-bottom: 1px solid #edf2f7;
-          cursor: pointer;
+        .price-pills {
           display: flex;
-          align-items: center;
-          gap: 10px;
-          transition: color 0.2s;
-        }
-        .sidebar .category-list li:hover {
-          color: #0a6b4a;
-        }
-        .sidebar .category-list li.active {
-          color: #0a6b4a;
-          font-weight: 600;
-        }
-        .sidebar .category-list li:last-child {
-          border-bottom: none;
-        }
-        .sidebar .category-list li .icon {
-          color: #0a6b4a;
-          flex-shrink: 0;
-        }
-        .sidebar .category-list li .badge {
-          margin-left: auto;
-          background: #eaf0f5;
-          font-size: 0.6rem;
-          padding: 2px 10px;
-          border-radius: 30px;
-          color: #4a5b6e;
-        }
-
-        .filter-group {
-          margin-top: 20px;
-          padding-top: 18px;
-          border-top: 1px solid #eaf0f5;
-        }
-        .filter-group h4 {
-          font-size: 0.75rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          color: #4a5b6e;
-          margin-bottom: 10px;
-          display: flex;
-          align-items: center;
+          flex-wrap: wrap;
           gap: 8px;
         }
-        .filter-group label {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 0.82rem;
-          color: #1e3142;
-          padding: 5px 0;
-          cursor: pointer;
-        }
-        .filter-group label input[type="checkbox"] {
-          accent-color: #0a6b4a;
-          width: 16px;
-          height: 16px;
-          cursor: pointer;
-        }
-
-        /* Products Area */
-        .products-area {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .toolbar {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 12px;
-          margin-bottom: 22px;
-        }
-        .toolbar .result-count {
-          font-size: 0.85rem;
-          color: #4a5b6e;
-        }
-        .toolbar .result-count strong {
-          color: #0b1a2a;
-        }
-        .toolbar .sort-select {
-          padding: 8px 16px;
-          border-radius: 40px;
-          border: 1px solid #dce4ec;
-          background: white;
-          font-size: 0.8rem;
-          color: #1e3142;
-          outline: none;
-          cursor: pointer;
-        }
-
-        .search-bar {
-          display: flex;
-          align-items: center;
-          background: white;
-          border: 1px solid #dce4ec;
-          border-radius: 40px;
-          padding: 4px 4px 4px 16px;
-          min-width: 200px;
-        }
-        .search-bar input {
-          border: none;
-          outline: none;
-          flex: 1;
-          padding: 8px 0;
-          font-size: 0.82rem;
-          background: transparent;
-        }
-        .search-bar button {
-          background: #0a6b4a;
-          border: none;
+        .price-pill {
+          padding: 6px 14px;
+          background: #f2f6fa;
+          border: 1px solid #eaf0f5;
           border-radius: 30px;
-          padding: 8px 16px;
-          color: white;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 6px;
           font-size: 0.75rem;
           font-weight: 600;
+          color: #4a5b6e;
+          cursor: pointer;
+          transition: all 0.2s ease;
         }
-        .search-bar button:hover {
-          background: #085a3e;
+        .price-pill:hover {
+          border-color: #0a6b4a;
+          color: #0a6b4a;
+        }
+        .price-pill.active {
+          background: #0a6b4a;
+          border-color: #0a6b4a;
+          color: #ffffff;
         }
 
+        /* ===== RESULT COUNT ===== */
+        .result-count {
+          font-size: 0.82rem;
+          color: #6b7a8a;
+          margin-bottom: 16px;
+        }
+        .result-count strong {
+          color: #0b1a2a;
+          font-weight: 700;
+        }
+
+        /* ===== PRODUCT GRID ===== */
         .product-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-          gap: 22px;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
           margin-bottom: 30px;
         }
 
         .product-card {
           background: #ffffff;
-          border-radius: 18px;
+          border-radius: 16px;
           border: 1px solid #eaf0f5;
           overflow: hidden;
           transition: all 0.25s ease;
           box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+          display: flex;
+          flex-direction: column;
         }
         .product-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 16px 40px rgba(10, 107, 74, 0.08);
+          transform: translateY(-4px);
+          box-shadow: 0 12px 30px rgba(10, 107, 74, 0.08);
           border-color: #cde0d4;
         }
 
         .product-card .img-wrap {
-          background: #f2f6fa;
-          height: 160px;
+          background: #f8fafc;
+          height: 140px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -811,7 +778,7 @@ export default function ProductsPage() {
           transition: transform 0.3s ease;
         }
         .product-card:hover .img-wrap img {
-          transform: scale(1.04);
+          transform: scale(1.05);
         }
         .product-card .img-wrap .stock-badge {
           position: absolute;
@@ -819,184 +786,128 @@ export default function ProductsPage() {
           right: 8px;
           background: #0a6b4a;
           color: white;
-          font-size: 0.6rem;
-          padding: 2px 10px;
+          font-size: 0.58rem;
+          padding: 2px 8px;
           border-radius: 20px;
-          font-weight: 600;
+          font-weight: 700;
         }
         .product-card .img-wrap .stock-badge.out {
           background: #dc3545;
         }
 
         .product-card .info {
-          padding: 14px 16px 16px;
+          padding: 12px;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
         }
         .product-card .info .tag {
-          font-size: 0.6rem;
+          font-size: 0.58rem;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.4px;
           color: #0a6b4a;
           background: #e4f0ea;
           display: inline-block;
-          padding: 2px 10px;
+          padding: 2px 8px;
           border-radius: 30px;
           margin-bottom: 4px;
+          align-self: flex-start;
         }
         .product-card .info h4 {
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           font-weight: 700;
           color: #0b1a2a;
-          line-height: 1.2;
+          line-height: 1.25;
           margin-bottom: 2px;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
         .product-card .info .desc {
-          font-size: 0.72rem;
+          font-size: 0.68rem;
           color: #6b7a8a;
-          margin-bottom: 4px;
+          margin-bottom: 6px;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
         .product-card .info .rating {
           display: flex;
           align-items: center;
-          gap: 4px;
-          font-size: 0.7rem;
+          gap: 3px;
+          font-size: 0.68rem;
           color: #f59e0b;
-          margin-bottom: 4px;
+          margin-bottom: 6px;
         }
         .product-card .info .rating span {
           color: #6b7a8a;
         }
         .product-card .info .price {
           font-weight: 800;
-          font-size: 1rem;
+          font-size: 0.95rem;
           color: #0a6b4a;
+          margin-bottom: 8px;
+        }
+        .product-card .info .btn-wrap {
+          margin-top: auto;
         }
 
-        /* Quick Links */
-        .quick-links-row {
-          display: grid;
-          grid-template-columns: 1.5fr 1.5fr 1fr 1.5fr;
-          gap: 30px;
-          margin: 40px 0 24px;
-          padding-top: 30px;
+        /* ===== FOOTER ===== */
+        .footer-simple {
           border-top: 1px solid #eef2f6;
-        }
-        .quick-links-row .col h4 {
-          font-size: 0.8rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          color: #0b1a2a;
-          margin-bottom: 12px;
-        }
-        .quick-links-row .col ul {
-          list-style: none;
-        }
-        .quick-links-row .col ul li {
-          padding: 4px 0;
-          font-size: 0.82rem;
-          color: #4a5b6e;
-          cursor: pointer;
+          padding: 20px 0;
           display: flex;
+          flex-direction: column;
           align-items: center;
-          gap: 8px;
-        }
-        .quick-links-row .col ul li:hover {
-          color: #0a6b4a;
-        }
-        .quick-links-row .col ul li .icon {
-          color: #0a6b4a;
-          width: 18px;
-        }
-        .quick-links-row .col .newsletter-input {
-          display: flex;
-          background: #f2f6fa;
-          border-radius: 40px;
-          overflow: hidden;
-          margin-top: 8px;
-          border: 1px solid #eaf0f5;
-        }
-        .quick-links-row .col .newsletter-input input {
-          border: none;
-          padding: 10px 16px;
-          flex: 1;
-          background: transparent;
-          outline: none;
-          font-size: 0.8rem;
-        }
-        .quick-links-row .col .newsletter-input button {
-          background: #0a6b4a;
-          color: white;
-          border: none;
-          padding: 0 18px;
-          font-weight: 600;
-          cursor: pointer;
-        }
-        .quick-links-row .col .newsletter-input button:hover {
-          background: #085a3e;
-        }
-
-        .footer-bottom {
-          border-top: 1px solid #eef2f6;
-          padding-top: 18px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-wrap: wrap;
           gap: 12px;
-          font-size: 0.7rem;
+          text-align: center;
+          font-size: 0.75rem;
           color: #6b7a8a;
         }
-        .footer-bottom .links {
+        .footer-links {
           display: flex;
-          gap: 20px;
+          flex-wrap: wrap;
+          gap: 16px;
+          justify-content: center;
         }
-        .footer-bottom .links a {
+        .footer-links a {
           color: #6b7a8a;
           text-decoration: none;
         }
-        .footer-bottom .links a:hover {
+        .footer-links a:hover {
           color: #0a6b4a;
         }
 
-        @media (max-width: 1024px) {
-          .products-page { padding: 0 20px 40px; }
-          .main-grid {
-            grid-template-columns: 1fr;
-            gap: 24px;
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 640px) {
+          .products-page { padding: 0 24px 60px; }
+          .page-title h1 { font-size: 2.2rem; }
+          .product-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
           }
-          .sidebar {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+          .product-card .img-wrap { height: 160px; }
+          .product-card .info { padding: 14px; }
+          .product-card .info h4 { font-size: 0.88rem; }
+          .product-card .info .price { font-size: 1rem; }
+        }
+
+        @media (min-width: 1024px) {
+          .products-page { padding: 0 40px 60px; }
+          .product-grid {
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            padding: 20px;
-            position: static;
           }
-          .sidebar .filter-group {
-            border-top: none;
-            padding-top: 0;
-            margin-top: 0;
-          }
-          .quick-links-row {
-            grid-template-columns: 1fr 1fr;
-          }
-          .search-bar {
-            min-width: 150px;
-          }
+          .product-card .img-wrap { height: 180px; }
         }
 
-        @media (max-width: 700px) {
-          .products-page { padding: 0 14px 32px; }
-          .sidebar { grid-template-columns: 1fr; }
-          .product-grid { grid-template-columns: repeat(2, 1fr); }
-          .quick-links-row { grid-template-columns: 1fr; }
-          .page-title h1 { font-size: 1.8rem; }
-          .toolbar { flex-direction: column; align-items: stretch; }
-          .search-bar { width: 100%; }
-        }
-
-        @media (max-width: 480px) {
-          .product-grid { grid-template-columns: 1fr; }
+        @media (min-width: 1280px) {
+          .product-grid {
+            grid-template-columns: repeat(5, 1fr);
+          }
         }
       `}</style>
 
@@ -1014,208 +925,155 @@ export default function ProductsPage() {
         <div className="page-title">
           <h1>Our <span>Products</span></h1>
           <p className="sub">
-            Trusted Medical Equipment for Better Care — Explore our wide range of premium medical equipment 
-            designed for hospitals, clinics &amp; home care.
+            Trusted Medical Equipment for Better Care — Explore our wide range of premium medical equipment.
           </p>
         </div>
 
-        {/* Main Grid */}
-        <div className="main-grid">
-          {/* Sidebar */}
-          <aside className="sidebar">
-            {/* Categories */}
-            <div>
-              <h3><List className="w-4 h-4" /> CATEGORIES</h3>
-              <ul className="category-list">
-                <li 
-                  className={selectedCategory === 'all' ? 'active' : ''}
-                  onClick={() => setSelectedCategory('all')}
-                >
-                  <span className="icon"><List className="w-3 h-3" /></span>
-                  All Products
-                  <span className="badge">{products.length}</span>
-                </li>
-                {categories.map((cat) => (
-                  <li 
-                    key={cat.name}
-                    className={selectedCategory === cat.name ? 'active' : ''}
-                    onClick={() => setSelectedCategory(cat.name)}
-                  >
-                    <span className="icon">{cat.icon}</span>
-                    {cat.name}
-                    <span className="badge">{cat.count}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* ===== COMPACT CATEGORY PILLS ===== */}
+        <div className="category-pills">
+          <button
+            className={`category-pill ${selectedCategory === 'all' ? 'active' : ''}`}
+            onClick={() => setSelectedCategory('all')}
+          >
+            <LayoutGrid className="w-3.5 h-3.5" />
+            All
+            <span className="count">{products.length}</span>
+          </button>
+          {categories.map((cat) => (
+            <button
+              key={cat.name}
+              className={`category-pill ${selectedCategory === cat.name ? 'active' : ''}`}
+              onClick={() => setSelectedCategory(cat.name)}
+            >
+              {cat.icon}
+              {cat.name}
+            </button>
+          ))}
+        </div>
 
-            {/* Filter by Price */}
-            <div className="filter-group">
-              <h4><Sliders className="w-4 h-4" /> FILTER BY PRICE</h4>
+        {/* ===== SEARCH BAR ===== */}
+        <div className="search-filter-bar">
+          <div className="search-input-wrap">
+            <Search className="w-4 h-4 icon" />
+            <input 
+              type="text" 
+              placeholder="Search products..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <button
+            className={`filter-btn ${showFilters ? 'active' : ''}`}
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            <Sliders className="w-4 h-4" />
+            <span className="hidden sm:inline">Price</span>
+          </button>
+        </div>
+
+        {/* ===== FILTER PANEL ===== */}
+        {showFilters && (
+          <div className="filter-panel">
+            <h4><Sliders className="w-4 h-4" /> Filter by Price</h4>
+            <div className="price-pills">
               {priceRanges.map((range) => (
-                <label key={range.value}>
-                  <input 
-                    type="checkbox" 
-                    checked={priceRange === range.value}
-                    onChange={() => setPriceRange(priceRange === range.value ? 'all' : range.value)}
-                  />
-                  {range.label}
-                </label>
-              ))}
-            </div>
-          </aside>
-
-          {/* Products Area */}
-          <div className="products-area">
-            {/* Toolbar */}
-            <div className="toolbar">
-              <div className="result-count">
-                Showing <strong>{sortedProducts.length}</strong> products
-              </div>
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <div className="search-bar">
-                  <input 
-                    type="text" 
-                    placeholder="Search products..." 
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                  <button onClick={() => {}}>
-                    <Search className="w-4 h-4" /> Search
-                  </button>
-                </div>
-                <select 
-                  className="sort-select"
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
+                <button
+                  key={range.value}
+                  className={`price-pill ${priceRange === range.value ? 'active' : ''}`}
+                  onClick={() => setPriceRange(priceRange === range.value ? 'all' : range.value)}
                 >
-                  <option value="featured">Sort by: Featured</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="name-asc">Name A–Z</option>
-                  <option value="name-desc">Name Z–A</option>
-                  <option value="rating">Rating</option>
-                </select>
-              </div>
+                  {range.label}
+                </button>
+              ))}
+              {priceRange !== 'all' && (
+                <button
+                  className="price-pill"
+                  onClick={() => setPriceRange('all')}
+                  style={{ background: '#fef2f2', color: '#dc2626', borderColor: '#fecaca' }}
+                >
+                  <X className="w-3 h-3 inline mr-1" /> Clear
+                </button>
+              )}
             </div>
+          </div>
+        )}
 
-            {/* Product Grid */}
-            {sortedProducts.length === 0 ? (
-              <div style={{ 
-                textAlign: 'center', 
-                padding: '60px 20px',
-                background: '#f8fafc',
-                borderRadius: '20px'
-              }}>
-                <Search className="w-12 h-12" style={{ color: '#6b7a8a', margin: '0 auto 16px' }} />
-                <h3 style={{ fontSize: '1.2rem', color: '#0b1a2a', marginBottom: '4px' }}>No products found</h3>
-                <p style={{ color: '#6b7a8a' }}>Try adjusting your filters or search terms</p>
-              </div>
-            ) : (
-              <div className="product-grid">
-                {sortedProducts.map((product) => (
-                  <div key={product.id} className="product-card">
-                    <div className="img-wrap">
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        width={400}
-                        height={160}
-                        className="object-cover"
-                      />
-                      <span className="stock-badge">
-                        {product.inStock ? 'In Stock' : 'Out of Stock'}
-                      </span>
+        {/* ===== RESULT COUNT ===== */}
+        <div className="result-count">
+          Showing <strong>{filteredProducts.length}</strong> products
+        </div>
+
+        {/* ===== PRODUCT GRID ===== */}
+        {filteredProducts.length === 0 ? (
+          <div style={{ 
+            textAlign: 'center', 
+            padding: '60px 20px',
+            background: '#ffffff',
+            borderRadius: '20px',
+            border: '1px solid #eaf0f5'
+          }}>
+            <Search className="w-12 h-12" style={{ color: '#94a3b8', margin: '0 auto 16px' }} />
+            <h3 style={{ fontSize: '1.1rem', color: '#0b1a2a', marginBottom: '4px' }}>No products found</h3>
+            <p style={{ color: '#6b7a8a', fontSize: '0.85rem' }}>Try adjusting your filters or search terms</p>
+          </div>
+        ) : (
+          <div className="product-grid">
+            {filteredProducts.map((product) => (
+              <div key={product.id} className="product-card">
+                <div className="img-wrap">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={400}
+                    height={160}
+                    className="object-contain"
+                  />
+                  <span className={`stock-badge ${!product.inStock ? 'out' : ''}`}>
+                    {product.inStock ? 'In Stock' : 'Out'}
+                  </span>
+                </div>
+                <div className="info">
+                  <span className="tag">{product.tag}</span>
+                  <h4>{product.name}</h4>
+                  <div className="desc">{product.description}</div>
+                  {product.rating && (
+                    <div className="rating">
+                      {'★'.repeat(Math.floor(product.rating))}
+                      {'☆'.repeat(5 - Math.floor(product.rating))}
+                      <span>({product.reviews})</span>
                     </div>
-                    <div className="info">
-                      <span className="tag">{product.tag}</span>
-                      <h4>{product.name}</h4>
-                      <div className="desc">{product.description}</div>
-                      {product.rating && (
-                        <div className="rating">
-                          {'★'.repeat(Math.floor(product.rating))}
-                          {'☆'.repeat(5 - Math.floor(product.rating))}
-                          <span>({product.reviews})</span>
-                        </div>
-                      )}
-                      <div className="price">{formatPrice(product.price)}</div>
-                      <WhatsAppOrderButton 
-    product={{
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      description: product.description
-    }}
-    className="w-full mt-2 justify-center"
-  />
-                    </div>
+                  )}
+                  <div className="price">{formatPrice(product.price)}</div>
+                  <div className="btn-wrap">
+                    <WhatsAppOrderButton 
+                      product={{
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        description: product.description
+                      }}
+                      className="w-full justify-center text-xs"
+                    />
                   </div>
-                ))}
+                </div>
               </div>
-            )}
+            ))}
           </div>
-        </div>
+        )}
 
-        {/* Quick Links & Footer */}
-        <div className="quick-links-row">
-          {/* Quick Links */}
-          <div className="col">
-            <h4>Quick Links</h4>
-            <ul>
-              {quickLinks.map((link) => (
-                <li key={link.label}>
-                  <ChevronRight className="w-3 h-3 icon" />
-                  <Link href={link.href} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        {/* ===== SIMPLE FOOTER ===== */}
+        <div className="footer-simple">
+          <div className="footer-links">
+            {quickLinks.map((link) => (
+              <Link key={link.href} href={link.href}>{link.label}</Link>
+            ))}
           </div>
-
-          {/* Our Products */}
-          <div className="col">
-            <h4>Our Products</h4>
-            <ul>
-              {productLinks.map((link) => (
-                <li key={link}>
-                  <ChevronRight className="w-3 h-3 icon" />
-                  {link}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Support */}
-          <div className="col">
-            <h4>Support</h4>
-            <ul>
-              <li><Phone className="w-3 h-3 icon" /> +91 98765 43210</li>
-              <li><Mail className="w-3 h-3 icon" /> info@getanjaliproducts.com</li>
-              <li><Globe className="w-3 h-3 icon" /> www.getanjaliproducts.com</li>
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div className="col">
-            <h4>Newsletter</h4>
-            <p style={{ fontSize: '0.8rem', color: '#4a5b6e', marginBottom: '6px' }}>
-              Subscribe to get updates on new products and offers.
-            </p>
-            <div className="newsletter-input">
-              <input type="email" placeholder="Enter your email" />
-              <button><Send className="w-4 h-4" /></button>
-            </div>
-          </div>
-        </div>
-
-        {/* Footer Bottom */}
-        <div className="footer-bottom">
-          <span>© 2025 Getanjaliproducts Health Care. All Rights Reserved.</span>
-          <div className="links">
+          <div className="footer-links">
             <Link href="/privacy">Privacy Policy</Link>
             <Link href="/terms">Terms &amp; Conditions</Link>
+            <Link href="/refund">Refund Policy</Link>
           </div>
+          <span>© 2025 Geetanjali Health Care. All Rights Reserved.</span>
         </div>
       </div>
     </>
